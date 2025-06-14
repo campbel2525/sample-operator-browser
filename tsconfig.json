@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Node 14+ 以降でよく使う指定
+    "module": "commonjs", // Node.js として動かす場合は commonjs
+    "strict": true, // 厳格な型チェック
+    "esModuleInterop": true, // import x from "y" の動作を Node と一致させる
+    "skipLibCheck": true, // node_modules の型チェックをスキップ
+    "outDir": "./dist", // ビルド時の出力先
+    "rootDir": "./src", // ソースのルート
+    "resolveJsonModule": true, // JSON を import 可能にする
+    "sourceMap": true, // デバッグしやすいよう source map を出力
+    "baseUrl": "./src",
+
+    "paths": {
+      "@services/*": ["services/*"],
+      "@config/*": ["config/*"],
+      "@definitions/*": ["definitions/*"],
+      "@app/*": ["app/*"]
+    }
+  },
+  "include": ["typings/**/*", "src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

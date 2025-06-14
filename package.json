@@ -1,0 +1,26 @@
+{
+  "name": "llm_use_browser2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.57",
+    "dotenv": "^16.5.0",
+    "langchain": "^0.3.27",
+    "playwright": "^1.52.0",
+    "repomix": "^0.3.8"
+  }
+}
