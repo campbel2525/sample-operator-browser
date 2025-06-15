@@ -1,11 +1,10 @@
-// src/services/fileService.ts
-
 import * as fs from 'fs'
 import * as path from 'path'
 
 /**
  * 拡張子から簡易的に MIME タイプを返す関数
- * 必要に応じて項目を追加してください。
+ * @param filePath ファイルパス
+ * @returns MIME タイプ文字列
  */
 function getMimeType(filePath: string): string {
   const ext = path.extname(filePath).toLowerCase()
@@ -42,8 +41,9 @@ function getMimeType(filePath: string): string {
 }
 
 /**
- * 指定されたファイルを読み込み、
- * Data URL（<img> の src として使える形式）に変換して返す
+ * 指定されたファイルを読み込み、Data URL形式に変換する
+ * @param filePath 変換するファイルのパス
+ * @returns Data URL文字列（<img>のsrcとして使用可能）
  */
 export async function fileToDataUrl(filePath: string): Promise<string> {
   // ① 絶対パスに解決

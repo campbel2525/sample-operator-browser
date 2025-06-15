@@ -1,12 +1,17 @@
-// src/services/chat_service.ts
 import * as dotenv from 'dotenv'
-import { ChatMessage } from '@definitions/types' // ■■ ChatMessageをインポート
+import { ChatMessage } from '@definitions/types'
 
 dotenv.config()
 
 import { ChatOpenAI } from '@langchain/openai'
 import { AIMessage } from '@langchain/core/messages'
 
+/**
+ * ChatOpenAIモデルを作成する
+ * @param modelName 使用するモデル名
+ * @param apiKey OpenAI APIキー（デフォルトは環境変数から取得）
+ * @returns ChatOpenAIインスタンス
+ */
 function createChatModel(
   modelName: string,
   apiKey: string = process.env.OPENAI_API_KEY!
@@ -20,45 +25,10 @@ function createChatModel(
 }
 
 /**
- * GPT へメッセージを投げる
- *
- * @param messages any[] の配列
- *   - text のみの場合: content="こんにちは"
- *   - 画像を含む場合: content=[{ type:"text", text:"..." }, { type:"image_url", image_url:{ url:"..." } }]
- * @param modelName 省略可。DEFAULT_OPEN_AI_MODEL が使われる
- * @returns GPT の応答テキスト
- *
- * テキストのみの場合
- * ```
- * [
- *     {
- *         "role": "human",
- *         "content": "こんにちは"
- *     }
- * ]
- * ```
- *
- * テキストと画像の場合
- * ```
- * [
- *     {
- *         "role":"human",
- *         "content":[
- *             {
- *                 "type": "text",
- *                 "text": "画像に書かれている文字は何ですか？書いている文字だけ教えてください"
- *             },
- *             {
- *                 "type": "image_url",
- *                 "image_url": {
- *                     #画像のURL、URLベースのbase64
- *                     "url": "IMG_URL"
- *                 }
- *             }
- *         ]
- *     }
- * ]
- * ```
+ * OpenAI ChatGPTにメッセージを送信し、応答を取得する
+ * @param messages チャットメッセージの配列（テキストまたは画像を含む）
+ * @param modelName 使用するモデル名（デフォルトは環境変数から取得）
+ * @returns AIの応答テキスト
  */
 export async function chat(
   messages: ChatMessage[],
@@ -71,6 +41,12 @@ export async function chat(
   return aiResponse.text
 }
 
+/**
+ * AIからJSON形式の応答を取得し、パースして返す
+ * @param messages チャットメッセージの配列
+ * @param modelName 使用するモデル名（デフォルトは環境変数から取得）
+ * @returns パース済みのJSONオブジェクト
+ */
 export async function chat_response_json(
   messages: ChatMessage[],
   modelName: string = process.env.OPENAI_AI_MODEL!

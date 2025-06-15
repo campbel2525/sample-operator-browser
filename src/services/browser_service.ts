@@ -1,9 +1,6 @@
-// src/services/browser_service.ts
-
 import { Browser, BrowserContext, Page, chromium } from 'playwright'
 import * as path from 'path'
 import { SCREENSHOT_DIR } from '@config/settings'
-
 import { AiSingleInstruction } from '@definitions/types'
 
 /**
@@ -23,11 +20,11 @@ export async function launchBrowser(headless = false): Promise<{
 }
 
 /**
- * ページ全体のスクリーンショットを撮影し、プロジェクトルート直下の screenshots/ に保存する。
- * ブラウザは閉じない。
- *
- * @param page      Playwright の Page オブジェクト
- * @param fileName 保存するファイル名（例: "google-home.png"）
+ * ページ全体のスクリーンショットを撮影し、指定ディレクトリに保存する
+ * @param page Playwright の Page オブジェクト
+ * @param saveDir 保存先ディレクトリ（デフォルト: SCREENSHOT_DIR）
+ * @param fileName 保存するファイル名（空の場合は自動生成）
+ * @returns 保存されたファイルのフルパス
  */
 export async function takeFullPageScreenshot(
   page: Page,
@@ -51,18 +48,10 @@ export async function takeFullPageScreenshot(
 }
 
 /**
- * AI 命令（goto/click/fill/wait/screenshot/done）を受け取り、
- * Playwright の Page に対して該当操作を行う
- *
- * @param page        Playwright の Page オブジェクト
+ * AI命令を受け取り、Playwrightページに対して該当操作を実行する
+ * @param page Playwright の Page オブジェクト
  * @param instruction AI から返ってくる命令オブジェクト
- *    - { goto: string }
- *    - { click: string }
- *    - { fill: { selector: string; text: string } }
- *    - { wait: number }
- *    - { screenshot: boolean }
- *    - { done: boolean }
- * @returns           true を返した場合、AI命令が { done: true } で「完了指示」だったことを示す
+ * @returns 操作完了指示の場合はtrue、それ以外はfalse
  */
 export async function applyAiInstruction(
   page: Page,

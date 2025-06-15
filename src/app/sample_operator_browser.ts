@@ -5,6 +5,10 @@ import {
 } from '@app/base_operator_browser'
 import { Page } from 'playwright'
 
+/**
+ * サンプルブラウザ操作のメイン関数
+ * 背景色に応じてボタンをクリックするAI操作を実行する
+ */
 async function main() {
   const prompt = `
 あなたは"ブラウザ操作を指示するAI"です。

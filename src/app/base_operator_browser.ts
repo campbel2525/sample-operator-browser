@@ -12,8 +12,10 @@ import { Page } from 'playwright'
 import * as fs from 'fs'
 import { ChatMessage } from '@definitions/types'
 
-// AI に JSON命令配列を返してもらうためのシステムプロンプト
-// 特定のWebサイト専用: ボタンX,Y,Zそれぞれのセレクタを提示
+/**
+ * AIにJSON命令配列を返してもらうためのベースルール
+ * ブラウザ操作の基本的な指示を定義
+ */
 export const BASE_BROWSER_RULE = `
 # ルール
 1. 返すメッセージは必ず【JSON配列だけ】にし、余計な説明は一切しないこと。
@@ -49,7 +51,10 @@ export function askUserPrompt(): Promise<string> {
 }
 
 /**
- * ループ内の1回分の処理を行う関数
+ * AI操作の1回分の処理を実行する
+ * スクリーンショット取得、HTML取得、AI問い合わせ、命令実行を行う
+ * @param page Playwright の Page オブジェクト
+ * @param prompt AIに送信するプロンプト
  */
 export async function processOnceOfAiCallBack(
   page: Page,
@@ -100,7 +105,6 @@ ${bodyHtml}
     content: aiRaw,
   })
   const logFilePath = `${PROMPT_LOG_DIR}/browser_prompt_${Date.now()}.json`
-  // const fs = require('fs')
   fs.writeFileSync(logFilePath, JSON.stringify(messages, null, 2))
 
   // 5. JSON.parse
@@ -112,9 +116,6 @@ ${bodyHtml}
   )
 
   // 6. 命令を実行（複数操作対応）
-  // try {
-  // let isDone = false
-
   for (let i = 0; i < instruction.length; i++) {
     const singleInstruction = instruction[i]
     console.log(`→ AI命令 ${i + 1}/${instruction.length}:`)
@@ -143,26 +144,12 @@ ${bodyHtml}
       await takeFullPageScreenshot(page)
     }
   }
-  // else if ("done" in singleInstruction && singleInstruction.done) {
-  //   console.log("▶ AI が操作完了と判断しました。");
-  //   isDone = true;
-  //   break;
-  // }
-  // }
-
-  // // 7. 成功した JSON命令のみ履歴に追加
-  // if (!isDone) {
-  //   chatHistory.push({ role: "assistant", content: aiRaw });
-  // }
-
-  // } catch (e) {
-  //   console.error("‼ 操作中にエラー発生:", e);
-
-  // }
 }
 
 /**
- * processOnceCallback: コールバック関数
+ * ブラウザ操作のメインループを実行する
+ * ユーザー入力を待ち、コールバック関数を実行してブラウザ操作を行う
+ * @param processOnceCallback 1回分の処理を行うコールバック関数
  */
 export async function operatorBrowser(
   processOnceCallback: (page: Page) => Promise<void>
