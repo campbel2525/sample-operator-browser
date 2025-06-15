@@ -63,17 +63,21 @@ npx ts-node -r tsconfig-paths/register src/app/sample_operator_browser.ts
 
 `docs/sample.html`のフルパスを取得し、立ち上がったブラウザに入力してページを表示する
 
-3
+3.
 
 ターミナルでエンターを押す
 
-4
+4.
 
 ブラウザの背景が下記のように変化すれば OK
 
 ```
 白->青->黄->赤->青->、、、、
 ```
+
+5.
+
+処理を止めるにはターミナルで`ctl + c`
 
 # フォルダの説明
 
