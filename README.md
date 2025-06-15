@@ -95,3 +95,9 @@ npx ts-node -r tsconfig-paths/register src/app/sample_operator_browser.ts
 ```
 npx repomix
 ```
+
+2. format & lint
+
+```
+npm run fix
+```
