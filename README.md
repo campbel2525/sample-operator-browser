@@ -41,7 +41,7 @@ openai の api を設定します。
 というものになります。具体的には`src/app/sample_operator_browser.ts`にあるプロンプトの通りで下記の操作が行われます。
 
 ```
-- 背景が白場合はセレクタ".button-y"のボタンをクリック
+- 背景が白場合はセレクタ".button-x"のボタンをクリック
 - 背景が青色の場合はセレクタ".button-y"のボタンをクリック
 - 背景が黄色の場合はセレクタ".button-z"のボタンをクリック
 - 背景が赤色の場合はセレクタ".button-x"のボタンをクリック
@@ -95,6 +95,10 @@ npx ts-node -r tsconfig-paths/register src/app/sample_operator_browser.ts
 ```
 npx repomix
 ```
+
+このプロジェクト全てのコードが`repomix-output.xml`に出力されます
+
+aiに投げるときにでも使用してください
 
 2. format & lint
 
