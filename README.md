@@ -61,7 +61,9 @@ npx ts-node -r tsconfig-paths/register src/app/sample_operator_browser.ts
 
 2.
 
-`docs/sample.html`のフルパスを取得し、立ち上がったブラウザに入力してページを表示する
+`docs/sample.html`の**フルパス**を取得し、立ち上がったブラウザに入力してページを表示する。
+
+**相対パス**ではなくて**フルパス**なので注意です
 
 3.
 
