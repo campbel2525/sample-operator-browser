@@ -1,8 +1,8 @@
-import { fileToDataUrl } from "@services/fileService";
-import { chat } from "@services/chatService";
+import { fileToDataUrl } from "@services/file_service";
+import { chat } from "@services/chat_service";
 import { AiInstruction } from "@definitions/types";
 import * as readline from "readline";
-import { launchBrowser, takeFullPageScreenshot, getBodyHtml } from "@services/browserService";
+import { launchBrowser, takeFullPageScreenshot, getBodyHtml } from "@services/browser_service";
 import { PROMPT_LOG_DIR } from "@config/settings";
 import { Page } from "playwright";
 

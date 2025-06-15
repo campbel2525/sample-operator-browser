@@ -1,4 +1,4 @@
-// src/services/chatService.ts
+// src/services/chat_service.ts
 import * as dotenv from "dotenv";
 dotenv.config();
 
