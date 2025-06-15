@@ -10,9 +10,9 @@ import {
 import { PROMPT_LOG_DIR } from '@config/settings'
 import { Page } from 'playwright'
 import * as fs from 'fs'
-import { ChatMessage } from '@definitions/types' // ChatMessageをインポート
+import { ChatMessage } from '@definitions/types'
 
-// ■■■■ AI に JSON命令配列を返してもらうためのシステムプロンプト ■■■■
+// AI に JSON命令配列を返してもらうためのシステムプロンプト
 // 特定のWebサイト専用: ボタンX,Y,Zそれぞれのセレクタを提示
 export const BASE_BROWSER_RULE = `
 # ルール

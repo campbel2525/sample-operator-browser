@@ -6,7 +6,6 @@ dotenv.config()
 
 import { ChatOpenAI } from '@langchain/openai'
 import { AIMessage } from '@langchain/core/messages'
-// import { DEFAULT_OPEN_AI_MODEL } from "@config/settings";
 
 function createChatModel(
   modelName: string,
